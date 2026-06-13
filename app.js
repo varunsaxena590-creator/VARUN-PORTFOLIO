@@ -115,38 +115,54 @@ async function hashPassword(plain) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+function mergeSavedData(parsed) {
+  const defaultData = DATA;
+  DATA = {
+    ...defaultData,
+    ...parsed,
+    profile: { ...defaultData.profile, ...(parsed.profile || {}) },
+    contact: { ...defaultData.contact, ...(parsed.contact || {}) },
+    skills: Array.isArray(parsed.skills) && parsed.skills.length ? parsed.skills : defaultData.skills,
+    projects: Array.isArray(parsed.projects) && parsed.projects.length ? parsed.projects : defaultData.projects,
+    education: Array.isArray(parsed.education) && parsed.education.length ? parsed.education : defaultData.education
+  };
+  DATA.adminPass = !parsed.adminPass || parsed.adminPass === OLD_DEFAULT_ADMIN_PASS_HASH
+    ? DEFAULT_ADMIN_PASS_HASH
+    : parsed.adminPass;
+  if (parsed.github && !DATA.contact.github) DATA.contact.github = parsed.github;
+  if (parsed.linkedin && !DATA.contact.linkedin) DATA.contact.linkedin = parsed.linkedin;
+  if (parsed.twitter && !DATA.contact.twitter) DATA.contact.twitter = parsed.twitter;
+}
+
 /* ===== LOAD FROM STORAGE ===== */
-function loadData() {
+async function loadData() {
   try {
     const saved = localStorage.getItem('varun_portfolio_data');
     if (saved) {
       const parsed = JSON.parse(saved);
-      const defaultData = DATA;
-      DATA = {
-        ...defaultData,
-        ...parsed,
-        profile: { ...defaultData.profile, ...(parsed.profile || {}) },
-        contact: { ...defaultData.contact, ...(parsed.contact || {}) },
-        skills: Array.isArray(parsed.skills) && parsed.skills.length ? parsed.skills : defaultData.skills,
-        projects: Array.isArray(parsed.projects) && parsed.projects.length ? parsed.projects : defaultData.projects,
-        education: Array.isArray(parsed.education) && parsed.education.length ? parsed.education : defaultData.education
-      };
-      DATA.adminPass = !parsed.adminPass || parsed.adminPass === OLD_DEFAULT_ADMIN_PASS_HASH
-        ? DEFAULT_ADMIN_PASS_HASH
-        : parsed.adminPass;
-      if (parsed.github && !DATA.contact.github) DATA.contact.github = parsed.github;
-      if (parsed.linkedin && !DATA.contact.linkedin) DATA.contact.linkedin = parsed.linkedin;
-      if (parsed.twitter && !DATA.contact.twitter) DATA.contact.twitter = parsed.twitter;
+      mergeSavedData(parsed);
       if (
         !Array.isArray(parsed.skills) || !parsed.skills.length ||
         !Array.isArray(parsed.projects) || !parsed.projects.length ||
         !Array.isArray(parsed.education) || !parsed.education.length ||
         parsed.adminPass !== DATA.adminPass
       ) {
-        saveData();
+        saveData({ cloud: false });
       }
     }
   } catch(e) {}
+
+  try {
+    if (window.CloudSync && CloudSync.isConfigured()) {
+      const cloudData = await CloudSync.load();
+      if (cloudData) {
+        mergeSavedData(cloudData);
+        localStorage.setItem('varun_portfolio_data', JSON.stringify(DATA));
+      }
+    }
+  } catch(e) {
+    console.warn('[CloudSync] Cloud load failed:', e);
+  }
 }
 
 // ⚠️ Clear any old broken password from localStorage on load
@@ -160,7 +176,7 @@ function loadData() {
   } catch(e) {}
 })();
 
-function saveData() {
+function saveData(options = {}) {
   localStorage.setItem('varun_portfolio_data', JSON.stringify(DATA));
   // Sync with DB layer for export/import compatibility
   try {
@@ -173,6 +189,10 @@ function saveData() {
       if (DATA.adminPass) DB.setAdminPass(DATA.adminPass);
     }
   } catch(e) { /* DB sync optional */ }
+
+  if (options.cloud !== false && window.CloudSync && CloudSync.isConfigured()) {
+    CloudSync.save(DATA).catch(err => console.warn('[CloudSync] Cloud save failed:', err));
+  }
 }
 
 function setValue(id, value) {
@@ -234,9 +254,13 @@ function bindAdminSaveButtons() {
   if (contactSave) contactSave.onclick = saveContact;
 }
 
+function cloudSaveSuffix() {
+  return window.CloudSync && CloudSync.isConfigured() ? ' Synced online.' : ' Saved on this browser.';
+}
+
 /* ===== LOADER ===== */
-window.addEventListener('load', () => {
-  loadData();
+window.addEventListener('load', async () => {
+  await loadData();
   setTimeout(() => {
     document.getElementById('loader').classList.add('hidden');
     initAll();
@@ -1065,7 +1089,7 @@ function saveProfile() {
   };
   saveData();
   applyStoredContent();
-  showToast('✅ Profile saved successfully!');
+  showToast('✅ Profile saved successfully!' + cloudSaveSuffix());
 }
 
 function saveContact() {
@@ -1080,5 +1104,5 @@ function saveContact() {
   };
   saveData();
   applyStoredContent();
-  showToast('✅ Contact info saved!');
+  showToast('✅ Contact info saved!' + cloudSaveSuffix());
 }
