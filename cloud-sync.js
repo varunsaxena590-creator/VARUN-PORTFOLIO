@@ -54,10 +54,22 @@
     return true;
   }
 
+  async function watch(callback) {
+    const ok = await init();
+    if (!ok || !ref || typeof callback !== 'function') return false;
+    ref.on('value', (snap) => {
+      if (snap.exists()) callback(snap.val());
+    }, (err) => {
+      console.warn('[CloudSync] Cloud watch failed:', err);
+    });
+    return true;
+  }
+
   window.CloudSync = {
     init,
     load,
     save,
+    watch,
     isConfigured: hasConfig,
     isReady: () => ready
   };

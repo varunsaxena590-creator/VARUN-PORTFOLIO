@@ -106,6 +106,9 @@ let DATA = {
   ]
 };
 
+let appInitialized = false;
+let cloudWatcherStarted = false;
+
 /* ===== PASSWORD HASHING (SHA-256) ===== */
 async function hashPassword(plain) {
   const encoder = new TextEncoder();
@@ -191,8 +194,13 @@ function saveData(options = {}) {
   } catch(e) { /* DB sync optional */ }
 
   if (options.cloud !== false && window.CloudSync && CloudSync.isConfigured()) {
-    CloudSync.save(DATA).catch(err => console.warn('[CloudSync] Cloud save failed:', err));
+    return CloudSync.save(DATA).catch(err => {
+      console.warn('[CloudSync] Cloud save failed:', err);
+      return false;
+    });
   }
+
+  return Promise.resolve(false);
 }
 
 function setValue(id, value) {
@@ -254,8 +262,27 @@ function bindAdminSaveButtons() {
   if (contactSave) contactSave.onclick = saveContact;
 }
 
-function cloudSaveSuffix() {
-  return window.CloudSync && CloudSync.isConfigured() ? ' Synced online.' : ' Saved on this browser.';
+function cloudSaveSuffix(synced) {
+  return synced ? ' Synced online.' : ' Saved on this browser.';
+}
+
+function refreshPortfolioView() {
+  applyStoredContent();
+  if (document.getElementById('skillsIcons')) renderSkillIcons();
+  if (document.getElementById('skillsBarsWrap')) renderSkillBars();
+  if (document.getElementById('projectsGrid')) initProjects();
+  if (document.getElementById('timelineWrap')) initTimeline();
+}
+
+function startCloudWatcher() {
+  if (cloudWatcherStarted || !window.CloudSync || !CloudSync.isConfigured()) return;
+  cloudWatcherStarted = true;
+  CloudSync.watch((cloudData) => {
+    if (!cloudData) return;
+    mergeSavedData(cloudData);
+    localStorage.setItem('varun_portfolio_data', JSON.stringify(DATA));
+    if (appInitialized) refreshPortfolioView();
+  });
 }
 
 /* ===== LOADER ===== */
@@ -283,6 +310,8 @@ function initAll() {
   // Dynamic footer year
   const fyEl = document.getElementById('footerYear');
   if(fyEl) fyEl.textContent = new Date().getFullYear();
+  appInitialized = true;
+  startCloudWatcher();
 }
 
 /* ===== CURSOR ===== */
@@ -1074,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ===== PERSIST ADMIN PROFILE/CONTACT EDITS ===== */
-function saveProfile() {
+async function saveProfile() {
   DATA.profile = {
     ...(DATA.profile || {}),
     firstName: document.getElementById('a-fname').value.trim() || 'Varun',
@@ -1087,12 +1116,12 @@ function saveProfile() {
     education: document.getElementById('a-edu').value.trim(),
     status: document.getElementById('a-status').value.trim()
   };
-  saveData();
+  const synced = await saveData();
   applyStoredContent();
-  showToast('✅ Profile saved successfully!' + cloudSaveSuffix());
+  showToast('✅ Profile saved successfully!' + cloudSaveSuffix(synced));
 }
 
-function saveContact() {
+async function saveContact() {
   DATA.contact = {
     ...(DATA.contact || {}),
     email: document.getElementById('a-email').value.trim(),
@@ -1102,7 +1131,7 @@ function saveContact() {
     linkedin: document.getElementById('a-linkedin').value.trim(),
     twitter: document.getElementById('a-twitter').value.trim()
   };
-  saveData();
+  const synced = await saveData();
   applyStoredContent();
-  showToast('✅ Contact info saved!' + cloudSaveSuffix());
+  showToast('✅ Contact info saved!' + cloudSaveSuffix(synced));
 }
