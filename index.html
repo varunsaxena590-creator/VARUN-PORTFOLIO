@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Varun Saxena | Web Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">VS<span class="dot">.</span></div>
+    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    <p class="loader-txt">Initializing Portfolio...</p>
+  </div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">VS<span class="dot">.</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="nav-link">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#education" class="nav-link">Education</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+    </button>
+    <button class="admin-btn" id="openAdmin">⚙️ Admin</button>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="particleCanvas"></canvas>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">👋 Available for Freelance, Internship &amp; Full-Time Roles</div>
+    <h1 class="hero-title">
+      <span class="reveal-word" id="heroFirstName">Varun</span>
+      <span class="reveal-word accent-text" id="heroLastName">Saxena</span>
+    </h1>
+    <div class="hero-role">
+      <span>I build </span>
+      <span class="typewriter-wrap"><span class="typewriter" id="typewriter"></span><span class="caret">|</span></span>
+    </div>
+    <p class="hero-desc" id="heroDesc">MCA student &amp; passionate Web Developer crafting beautiful, functional digital experiences with clean code and creative design.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work 🚀</a>
+      <a href="#contact" class="btn-secondary">Let's Connect</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n">15+</span><span class="stat-l">Projects</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">3+</span><span class="stat-l">Yrs Learning</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Tech Skills</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="orbit-ring ring1">
+      <div class="orbit-dot od1">⚛️</div>
+    </div>
+    <div class="orbit-ring ring2">
+      <div class="orbit-dot od2">🎨</div>
+    </div>
+    <div class="orbit-ring ring3">
+      <div class="orbit-dot od3">💻</div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar-glow"></div>
+      <div class="avatar-main" id="heroAvatar">VS</div>
+    </div>
+    <div class="floating-chip chip1">React.js</div>
+    <div class="floating-chip chip2">HTML/CSS</div>
+    <div class="floating-chip chip3">JavaScript</div>
+    <div class="floating-chip chip4">MySQL</div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-tag">About Me</div>
+    <h2 class="section-title">Who Am <span class="highlight">I?</span></h2>
+    <div class="about-grid">
+      <div class="about-card-wrap">
+        <div class="about-card">
+          <div class="about-avatar" id="aboutAvatar">VS</div>
+          <h3 id="aboutName">Varun Saxena</h3>
+          <p class="about-role" id="aboutRole">Web Developer &amp; UI/UX Designer</p>
+          <div class="about-details">
+            <div class="detail-item"><span class="di">📍</span><span id="aboutLocation">Kota, Rajasthan</span></div>
+            <div class="detail-item"><span class="di">🎓</span><span id="aboutEdu">MCA (Pursuing)</span></div>
+            <div class="detail-item"><span class="di">📧</span><span id="aboutEmail">varunsaxena063@gmail.com</span></div>
+            <div class="detail-item"><span class="di">📱</span><span id="aboutPhone">+91 78770402765</span></div>
+            <div class="detail-item"><span class="di">💼</span><span id="aboutStatus">Open to Work</span></div>
+          </div>
+          <a href="#contact" class="btn-primary" style="margin-top:1rem;display:block;text-align:center">Hire Me</a>
+        </div>
+      </div>
+      <div class="about-text">
+        <p id="aboutDesc">I'm a detail-oriented MCA student with a strong passion for Web Development, UI/UX Design, and creating seamless digital experiences. I love turning complex problems into simple, beautiful and functional solutions.</p>
+        <p id="aboutDesc2" style="margin-top:1rem">Currently pursuing MCA while working as an Examination Supervisor, I bring discipline, precision, and a team-first mindset to everything I build. My goal is to become a full-stack web developer.</p>
+        <div class="about-chips">
+          <span>🚀 Fast Learner</span>
+          <span>🎯 Detail Oriented</span>
+          <span>🤝 Team Player</span>
+          <span>💡 Creative Thinker</span>
+          <span>📐 Problem Solver</span>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">💼</div>
+          <div>
+            <strong>Examination Supervisor (Part-Time)</strong>
+            <p>Local Coaching / School | Kota | 2023 – Present</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <div class="section-tag">My Skills</div>
+    <h2 class="section-title">Tech <span class="highlight">Stack</span></h2>
+    <div class="skills-icons" id="skillsIcons"></div>
+    <div class="skills-bars-wrap" id="skillsBarsWrap"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="container">
+    <div class="section-tag">Education &amp; Certifications</div>
+    <h2 class="section-title">My <span class="highlight">Journey</span></h2>
+    <div class="timeline-wrap" id="timelineWrap"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's Work <span class="highlight">Together</span></h2>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="contact-sub">Have a project in mind or a role you'd like to discuss? I'm always open to new opportunities — let's build something amazing together.</p>
+        <div class="contact-items">
+          <div class="ci"><span>📧</span><div><strong>Email</strong><p id="contactEmail">varunsaxena063@gmail.com</p></div></div>
+          <div class="ci"><span>📱</span><div><strong>Phone</strong><p id="contactPhone">+91 78770402765</p></div></div>
+          <div class="ci"><span>📍</span><div><strong>Location</strong><p id="contactLoc">Kota, Rajasthan, India</p></div></div>
+        </div>
+        <div class="social-row">
+          <a href="#" class="social-btn" id="githubLink">🐙 GitHub</a>
+          <a href="#" class="social-btn" id="linkedinLink">💼 LinkedIn</a>
+          <a href="#" class="social-btn" id="twitterLink">🐦 Twitter</a>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="fg"><input type="text" placeholder="Your Name" required /><label>Name</label></div>
+        <div class="fg"><input type="email" placeholder="Your Email" required /><label>Email</label></div>
+        <div class="fg"><input type="text" placeholder="Subject" /><label>Subject</label></div>
+        <div class="fg"><textarea rows="5" placeholder="Your Message" required></textarea><label>Message</label></div>
+        <button type="submit" class="btn-primary" style="width:100%">Send Message 🚀</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">VS<span class="dot">.</span></div>
+    <p>Designed &amp; Built with ❤️ by <strong id="footerName">Varun Saxena</strong></p>
+    <p class="footer-copy">© <span id="footerYear"></span> All Rights Reserved</p>
+  </div>
+</footer>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminOverlay" onclick="closeAdmin()"></div>
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-header">
+    <div class="admin-title">⚙️ Admin Panel</div>
+    <button class="admin-close" id="closeAdminBtn" onclick="closeAdmin()">✕</button>
+  </div>
+
+  <div class="admin-login" id="adminLogin">
+    <div class="admin-lock-icon">🔐</div>
+    <h3>Admin Access</h3>
+    <p>Enter your password to manage portfolio</p>
+    <input type="password" id="adminPassword" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkAdminPassword()" />
+    <button class="btn-primary" onclick="checkAdminPassword()" style="width:100%;margin-top:.75rem">Login</button>
+    <button class="btn-secondary status-check-btn" onclick="checkSystemStatus()" style="width:100%;margin-top:.6rem;background:var(--bg2);border:1px solid var(--border)">
+      🛠️ Check System Status
+    </button>
+  </div>
+
+  <div class="admin-dash" id="adminDash" style="display:none">
+    <div class="admin-tabs">
+      <button class="atab active" onclick="switchTab(this,'tab-profile')">👤 Profile</button>
+      <button class="atab" onclick="switchTab(this,'tab-skills')">💻 Skills</button>
+      <button class="atab" onclick="switchTab(this,'tab-projects')">🚀 Projects</button>
+      <button class="atab" onclick="switchTab(this,'tab-edu')">🎓 Education</button>
+      <button class="atab" onclick="switchTab(this,'tab-contact')">📞 Contact</button>
+      <button class="atab" onclick="switchTab(this,'tab-appearance')">🎨 Theme</button>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="tab-content active" id="tab-profile">
+      <h3>Edit Profile</h3>
+      <label>First Name</label>
+      <input id="a-fname" type="text" value="Varun" oninput="liveUpdate('heroFirstName',this.value);liveUpdate('footerName',this.value+' '+document.getElementById('a-lname').value)" />
+      <label>Last Name</label>
+      <input id="a-lname" type="text" value="Saxena" oninput="liveUpdate('heroLastName',this.value);liveUpdate('footerName',document.getElementById('a-fname').value+' '+this.value)" />
+      <label>Role / Title</label>
+      <input id="a-role" type="text" value="Web Developer &amp; UI/UX Designer" oninput="liveUpdate('aboutRole',this.value)" />
+      <label>Hero Description</label>
+      <textarea id="a-desc" oninput="liveUpdate('heroDesc',this.value)">MCA student & passionate Web Developer crafting beautiful, functional digital experiences with clean code and creative design.</textarea>
+      <label>About (Para 1)</label>
+      <textarea id="a-about1" oninput="liveUpdate('aboutDesc',this.value)">I'm a detail-oriented MCA student with a strong passion for Web Development, UI/UX Design, and creating seamless digital experiences. I love turning complex problems into simple, beautiful and functional solutions.</textarea>
+      <label>About (Para 2)</label>
+      <textarea id="a-about2" oninput="liveUpdate('aboutDesc2',this.value)">Currently pursuing MCA while working as an Examination Supervisor, I bring discipline, precision, and a team-first mindset to everything I build. My goal is to become a full-stack web developer.</textarea>
+      <label>Location</label>
+      <input id="a-location" type="text" value="Kota, Rajasthan" oninput="liveUpdate('aboutLocation',this.value)" />
+      <label>Education Status</label>
+      <input id="a-edu" type="text" value="MCA (Pursuing)" oninput="liveUpdate('aboutEdu',this.value)" />
+      <label>Availability Status</label>
+      <input id="a-status" type="text" value="Open to Work" oninput="liveUpdate('aboutStatus',this.value)" />
+      <button class="btn-primary" onclick="showToast('✅ Profile saved!')">💾 Save Changes</button>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="tab-content" id="tab-skills" style="display:none">
+      <h3>Manage Skills</h3>
+      <div id="skillsEditor"></div>
+      <div class="add-form">
+        <h4>Add New Skill</h4>
+        <input type="text" id="ns-name" placeholder="Skill name (e.g. Vue.js)" />
+        <input type="text" id="ns-icon" placeholder="Emoji (e.g. 💚)" />
+        <input type="number" id="ns-pct" placeholder="Proficiency % (e.g. 75)" min="0" max="100" />
+        <input type="text" id="ns-color" placeholder="Color (e.g. #42b883)" />
+        <button class="btn-primary" onclick="addSkill()">+ Add Skill</button>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="tab-content" id="tab-projects" style="display:none">
+      <h3>Manage Projects</h3>
+      <div id="projectsEditor"></div>
+      <div class="add-form">
+        <h4>Add New Project</h4>
+        <input type="text" id="np-title" placeholder="Project Title" />
+        <textarea id="np-desc" placeholder="Description"></textarea>
+        <input type="text" id="np-tech" placeholder="Tech stack (e.g. React, Node.js, MySQL)" />
+        <input type="text" id="np-color" placeholder="Accent color (e.g. #20b2aa)" />
+        <input type="url" id="np-link" placeholder="Live URL" />
+        <input type="url" id="np-github" placeholder="GitHub URL" />
+        <label style="font-size:.82rem;color:var(--text2);margin-top:.4rem">🖼️ Project Image (optional, max 2MB)</label>
+        <input type="file" id="np-img" accept="image/*" style="font-size:.82rem" onchange="handleProjectImgUpload(this)" />
+        <div id="np-img-preview"></div>
+        <button class="btn-primary" onclick="addProject()">+ Add Project</button>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="tab-content" id="tab-edu" style="display:none">
+      <h3>Manage Education</h3>
+      <div id="eduEditor"></div>
+      <div class="add-form">
+        <h4>Add Entry</h4>
+        <input type="text" id="ne-title" placeholder="Degree / Course" />
+        <input type="text" id="ne-inst" placeholder="Institution" />
+        <input type="text" id="ne-year" placeholder="Year (e.g. 2021-2023)" />
+        <input type="text" id="ne-icon" placeholder="Icon emoji" />
+        <button class="btn-primary" onclick="addEdu()">+ Add Entry</button>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="tab-content" id="tab-contact" style="display:none">
+      <h3>Edit Contact</h3>
+      <label>Email</label>
+      <input id="a-email" type="email" value="varunsaxena063@gmail.com" oninput="liveUpdate('aboutEmail',this.value);liveUpdate('contactEmail',this.value)" />
+      <label>Phone</label>
+      <input id="a-phone" type="text" value="78770402765" oninput="liveUpdate('aboutPhone',this.value);liveUpdate('contactPhone',this.value)" />
+      <label>Contact Location</label>
+      <input id="a-cloc" type="text" value="Kota, Rajasthan, India" oninput="liveUpdate('contactLoc',this.value)" />
+      <label>GitHub URL <small style="color:var(--text2)">(e.g. https://github.com/username)</small></label>
+      <input id="a-github" type="text" value="" placeholder="https://github.com/username" oninput="updateSocialLink('githubLink',this.value)" />
+      <label>LinkedIn URL <small style="color:var(--text2)">(e.g. https://linkedin.com/in/username)</small></label>
+      <input id="a-linkedin" type="text" value="" placeholder="https://linkedin.com/in/username" oninput="updateSocialLink('linkedinLink',this.value)" />
+      <label>Twitter URL <small style="color:var(--text2)">(e.g. https://twitter.com/username)</small></label>
+      <input id="a-twitter" type="text" value="" placeholder="https://twitter.com/username" oninput="updateSocialLink('twitterLink',this.value)" />
+      <button class="btn-primary" onclick="showToast('✅ Contact info saved!')">💾 Save</button>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="tab-content" id="tab-appearance" style="display:none">
+      <h3>Theme &amp; Appearance</h3>
+      <label>Primary Color</label>
+      <input type="color" id="a-primary" value="#20b2aa" oninput="updateCSSVar('--primary',this.value)" />
+      <label>Accent Color</label>
+      <input type="color" id="a-accent" value="#3a9bd5" oninput="updateCSSVar('--accent',this.value)" />
+      <label>Theme</label>
+      <div style="display:flex;gap:.5rem;margin-bottom:1rem">
+        <button class="btn-secondary" onclick="setTheme('light')">☀️ Light</button>
+        <button class="btn-secondary" onclick="setTheme('dark')">🌙 Dark</button>
+      </div>
+      <label>Change Admin Password</label>
+      <input type="password" id="a-newpass" placeholder="New password" />
+      <button class="btn-primary" onclick="changePassword()">🔒 Update Password</button>
+      <hr style="border-color:var(--border);margin:1.25rem 0"/>
+      <button class="btn-secondary" style="width:100%;margin-bottom:.5rem" onclick="exportData()">📤 Export Data (JSON)</button>
+      <button class="btn-primary" style="background:#ef4444;width:100%" onclick="resetAll()">🗑️ Reset All Data</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- SYSTEM STATUS MODAL -->
+<div class="status-overlay" id="statusModal" onclick="if(event.target===this)closeStatusModal()">
+  <div class="status-modal">
+    <div class="status-modal-header">
+      <span>🛠️ System Status</span>
+      <button onclick="closeStatusModal()" class="status-close">✕</button>
+    </div>
+    <p class="status-subtitle">Checking if all components are working correctly...</p>
+    <div class="status-list">
+      <div class="st-row" id="st-frontend">
+        <div class="st-icon">🌐</div>
+        <div class="st-info">
+          <strong>Frontend (HTML/CSS/JS)</strong>
+          <span class="st-detail"></span>
+        </div>
+        <div class="st-dot loading"></div>
+        <span class="st-label">🔄 Checking...</span>
+      </div>
+      <div class="st-row" id="st-localstorage">
+        <div class="st-icon">🗄️</div>
+        <div class="st-info">
+          <strong>Database (LocalStorage)</strong>
+          <span class="st-detail"></span>
+        </div>
+        <div class="st-dot loading"></div>
+        <span class="st-label">🔄 Checking...</span>
+      </div>
+      <div class="st-row" id="st-dom">
+        <div class="st-icon">⚙️</div>
+        <div class="st-info">
+          <strong>Backend Logic (JS Engine)</strong>
+          <span class="st-detail"></span>
+        </div>
+        <div class="st-dot loading"></div>
+        <span class="st-label">🔄 Checking...</span>
+      </div>
+      <div class="st-row" id="st-password">
+        <div class="st-icon">🔑</div>
+        <div class="st-info">
+          <strong>Admin Password</strong>
+          <span class="st-detail"></span>
+        </div>
+        <div class="st-dot loading"></div>
+        <span class="st-label">🔄 Checking...</span>
+      </div>
+      <div class="st-row" id="st-data">
+        <div class="st-icon">📦</div>
+        <div class="st-info">
+          <strong>Portfolio Data Integrity</strong>
+          <span class="st-detail"></span>
+        </div>
+        <div class="st-dot loading"></div>
+        <span class="st-label">🔄 Checking...</span>
+      </div>
+    </div>
+    <button class="btn-secondary" onclick="runStatusChecks()" style="width:100%;margin-top:1rem">🔄 Re-run Checks</button>
+    <div class="status-note">ℹ️ This portfolio uses <strong>localStorage</strong> as its database — no server needed. Password: <code>varun@123</code> (default)</div>
+  </div>
+</div>
+
+
+   ============================================================ */
+
+const DB = (() => {
+  const DB_KEY = 'varun_portfolio_data';
+
+  /* ─── Internal Helpers ─── */
+  function _read() {
+    try {
+      return JSON.parse(localStorage.getItem(DB_KEY) || '{}');
+    } catch (e) {
+      console.error('[DB] Read error:', e);
+      return {};
+    }
+  }
+
+  function _write(data) {
+    try {
+      localStorage.setItem(DB_KEY, JSON.stringify(data));
+      return true;
+    } catch (e) {
+      console.error('[DB] Write error:', e);
+      return false;
+    }
+  }
+
+  function _timestamp() {
+    return new Date().toISOString();
+  }
+
+  /* ─── CORE CRUD ─── */
+
+  /**
+   * CREATE — ek naya record insert karo kisi bhi collection mein
+   * @param {string} collection  — e.g. 'skills', 'projects', 'education'
+   * @param {object} record      — naya object jo add karna hai
+   * @returns {object|null}      — saved record (with id + timestamps)
+   */
+  function create(collection, record) {
+    const db = _read();
+    if (!Array.isArray(db[collection])) db[collection] = [];
+
+    const newRecord = {
+      _id: Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+      _createdAt: _timestamp(),
+      _updatedAt: _timestamp(),
+      ...record
+    };
+
+    db[collection].push(newRecord);
+    _write(db);
+    console.log(`[DB] CREATE ${collection}:`, newRecord);
+    return newRecord;
+  }
+
+  /**
+   * READ ALL — poori collection fetch karo
+   * @param {string} collection
+   * @returns {Array}
+   */
+  function readAll(collection) {
+    const db = _read();
+    return Array.isArray(db[collection]) ? db[collection] : [];
+  }
+
+  /**
+   * READ ONE — ek record dhundo by _id
+   * @param {string} collection
+   * @param {string} id
+   * @returns {object|null}
+   */
+  function readOne(collection, id) {
+    const records = readAll(collection);
+    return records.find(r => r._id === id) || null;
+  }
+
+  /**
+   * READ by INDEX — index se record lo (legacy array support)
+   * @param {string} collection
+   * @param {number} index
+   * @returns {object|null}
+   */
+  function readByIndex(collection, index) {
+    const records = readAll(collection);
+    return records[index] ?? null;
+  }
+
+  /**
+   * UPDATE — existing record update karo by _id
+   * @param {string} collection
+   * @param {string} id
+   * @param {object} updates  — sirf wo fields jo change karni hain
+   * @returns {object|null}   — updated record
+   */
+  function update(collection, id, updates) {
+    const db = _read();
+    if (!Array.isArray(db[collection])) return null;
+
+    const idx = db[collection].findIndex(r => r._id === id);
+    if (idx === -1) {
+      console.warn(`[DB] UPDATE: Record not found — ${collection}#${id}`);
+      return null;
+    }
+
+    db[collection][idx] = {
+      ...db[collection][idx],
+      ...updates,
+      _id: id,                            // id kabhi na badle
+      _updatedAt: _timestamp()
+    };
+
+    _write(db);
+    console.log(`[DB] UPDATE ${collection}#${id}:`, db[collection][idx]);
+    return db[collection][idx];
+  }
+
+  /**
+   * UPDATE by INDEX — legacy index-based update
+   * @param {string} collection
+   * @param {number} index
+   * @param {object} updates
+   * @returns {object|null}
+   */
+  function updateByIndex(collection, index, updates) {
+    const db = _read();
+    if (!Array.isArray(db[collection]) || !db[collection][index]) return null;
+
+    db[collection][index] = {
+      ...db[collection][index],
+      ...updates,
+      _updatedAt: _timestamp()
+    };
+
+    _write(db);
+    return db[collection][index];
+  }
+
+  /**
+   * DELETE — record hatao by _id
+   * @param {string} collection
+   * @param {string} id
+   * @returns {boolean}
+   */
+  function remove(collection, id) {
+    const db = _read();
+    if (!Array.isArray(db[collection])) return false;
+
+    const before = db[collection].length;
+    db[collection] = db[collection].filter(r => r._id !== id);
+
+    if (db[collection].length === before) {
+      console.warn(`[DB] DELETE: Record not found — ${collection}#${id}`);
+      return false;
+    }
+
+    _write(db);
+    console.log(`[DB] DELETE ${collection}#${id}`);
+    return true;
+  }
+
+  /**
+   * DELETE by INDEX — legacy index-based delete
+   * @param {string} collection
+   * @param {number} index
+   * @returns {boolean}
+   */
+  function removeByIndex(collection, index) {
+    const db = _read();
+    if (!Array.isArray(db[collection]) || index < 0 || index >= db[collection].length) return false;
+    db[collection].splice(index, 1);
+    _write(db);
+    return true;
+  }
+
+  /* ─── PROFILE & CONTACT (Single-object storage) ─── */
+
+  /**
+   * getProfile — profile object fetch karo
+   */
+  function getProfile() {
+    return _read().profile || {};
+  }
+
+  /**
+   * setProfile — poora profile save karo
+   * @param {object} profileObj
+   */
+  function setProfile(profileObj) {
+    const db = _read();
+    db.profile = { ...(db.profile || {}), ...profileObj, _updatedAt: _timestamp() };
+    _write(db);
+    console.log('[DB] PROFILE updated');
+    return db.profile;
+  }
+
+  /**
+   * getContact — contact object fetch karo
+   */
+  function getContact() {
+    return _read().contact || {};
+  }
+
+  /**
+   * setContact — contact info save karo
+   * @param {object} contactObj
+   */
+  function setContact(contactObj) {
+    const db = _read();
+    db.contact = { ...(db.contact || {}), ...contactObj, _updatedAt: _timestamp() };
+    _write(db);
+    console.log('[DB] CONTACT updated');
+    return db.contact;
+  }
+
+  /* ─── ADMIN / AUTH ─── */
+
+  function getAdminPass() {
+    return _read().adminPass || null;
+  }
+
+  function setAdminPass(hashedPass) {
+    const db = _read();
+    db.adminPass = hashedPass;
+    _write(db);
+    console.log('[DB] Admin password updated');
+  }
+
+  /* ─── SEARCH / FILTER ─── */
+
+  /**
+   * find — collection mein filter lagao
+   * @param {string} collection
+   * @param {function} predicate  — callback: (record) => boolean
+   * @returns {Array}
+   */
+  function find(collection, predicate) {
+    return readAll(collection).filter(predicate);
+  }
+
+  /* ─── BULK OPERATIONS ─── */
+
+  /**
+   * bulkSet — poori collection ek saath replace karo (for initial load)
+   * @param {string} collection
+   * @param {Array} records
+   */
+  function bulkSet(collection, records) {
+    const db = _read();
+    db[collection] = records;
+    _write(db);
+    console.log(`[DB] BULK SET ${collection}: ${records.length} records`);
+  }
+
+  /* ─── EXPORT / IMPORT ─── */
+
+  /**
+   * exportJSON — poora database JSON file ke roop mein download karo
+   */
+  function exportJSON() {
+    const db = _read();
+    const json = JSON.stringify(db, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
+    a.href     = url;
+    a.download = `varun_portfolio_db_${date}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    console.log('[DB] Database exported as JSON');
+    return json;
+  }
+
+  /**
+   * exportCSV — koi bhi ek collection CSV file ke roop mein download karo
+   * @param {string} collection  — e.g. 'skills', 'projects', 'education'
+   */
+  function exportCSV(collection) {
+    const records = readAll(collection);
+    if (!records.length) {
+      console.warn('[DB] exportCSV: No records found in', collection);
+      return;
+    }
+
+    // Headers: sabhi keys collect karo
+    const headers = [...new Set(records.flatMap(r => Object.keys(r)))];
+    const csvRows = [
+      headers.join(','),
+      ...records.map(r =>
+        headers.map(h => {
+          const val = r[h];
+          const str = Array.isArray(val) ? val.join('; ') : String(val ?? '');
+          // Comma ya quote ho to wrap in quotes
+          return str.includes(',') || str.includes('"') || str.includes('\n')
+            ? `"${str.replace(/"/g, '""')}"`
+            : str;
+        }).join(',')
+      )
+    ];
+
+    const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
+    a.href     = url;
+    a.download = `varun_${collection}_${date}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    console.log(`[DB] Collection "${collection}" exported as CSV`);
+  }
+
+  /**
+   * importJSON — JSON file se data restore karo
+   * @param {File} file  — File input se liya hua file object
+   * @param {function} [callback]  — import ke baad kya karna hai
+   */
+  function importJSON(file, callback) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const parsed = JSON.parse(e.target.result);
+        _write(parsed);
+        console.log('[DB] Database imported successfully');
+        if (typeof callback === 'function') callback(true, parsed);
+      } catch (err) {
+        console.error('[DB] Import failed:', err);
+        if (typeof callback === 'function') callback(false, null);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  /* ─── STATS / META ─── */
+
+  /**
+   * stats — database ka overview
+   */
+  function stats() {
+    const db = _read();
+    const info = {
+      collections: {},
+      totalKeys: Object.keys(db).length,
+      storageSizeKB: parseFloat((JSON.stringify(db).length / 1024).toFixed(2)),
+      lastExport: null
+    };
+    ['skills', 'projects', 'education'].forEach(col => {
+      info.collections[col] = Array.isArray(db[col]) ? db[col].length : 0;
+    });
+    console.table(info.collections);
+    console.log('[DB] Storage used:', info.storageSizeKB, 'KB');
+    return info;
+  }
+
+  /**
+   * clear — poora database wipe karo (reset)
+   */
+  function clear() {
+    localStorage.removeItem(DB_KEY);
+    console.log('[DB] Database cleared');
+  }
+
+  /* ─── PUBLIC API ─── */
+  return {
+    // Core CRUD
+    create,
+    readAll,
+    readOne,
+    readByIndex,
+    update,
+    updateByIndex,
+    remove,
+    removeByIndex,
+
+    // Profile / Contact
+    getProfile,
+    setProfile,
+    getContact,
+    setContact,
+
+    // Auth
+    getAdminPass,
+    setAdminPass,
+
+    // Search
+    find,
+
+    // Bulk
+    bulkSet,
+
+    // Export / Import / Download
+    exportJSON,
+    exportCSV,
+    importJSON,
+
+    // Meta
+    stats,
+    clear,
+
+    // Raw access (emergency)
+    _raw: _read
+  };
+})();
+
+/* ─── AUTO INIT LOG ─── */
+console.log('%c[DB] database.js loaded ✅', 'color:#20b2aa;font-weight:bold');
+console.log('[DB] Available methods:', Object.keys(DB).filter(k => !k.startsWith('_')).join(', '));
+
+</script>
+<script src="database.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
