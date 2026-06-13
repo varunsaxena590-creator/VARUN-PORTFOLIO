@@ -533,13 +533,39 @@ function initScrollAnimations() {
 }
 
 /* ===== CONTACT FORM ===== */
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
-  btn.textContent = '✅ Message Sent!';
-  btn.style.background = 'var(--success)';
-  showToast('✅ Message sent successfully!');
-  setTimeout(() => { btn.textContent = 'Send Message 🚀'; btn.style.background=''; e.target.reset(); }, 3000);
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const defaultText = 'Send Message 🚀';
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+
+    if (!res.ok) throw new Error('Message service failed');
+
+    btn.textContent = '✅ Message Sent!';
+    btn.style.background = 'var(--success)';
+    showToast('✅ Message sent to Varun successfully!');
+    form.reset();
+  } catch (err) {
+    btn.textContent = 'Try Again';
+    btn.style.background = '#ef4444';
+    showToast('❌ Message not sent. Please try again or email directly.');
+  } finally {
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = defaultText;
+      btn.style.background = '';
+    }, 3000);
+  }
 }
 
 /* ===== SYSTEM STATUS CHECKER ===== */

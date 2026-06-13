@@ -183,11 +183,15 @@
           <a href="#" class="social-btn" id="twitterLink">🐦 Twitter</a>
         </div>
       </div>
-      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-        <div class="fg"><input type="text" placeholder="Your Name" required /><label>Name</label></div>
-        <div class="fg"><input type="email" placeholder="Your Email" required /><label>Email</label></div>
-        <div class="fg"><input type="text" placeholder="Subject" /><label>Subject</label></div>
-        <div class="fg"><textarea rows="5" placeholder="Your Message" required></textarea><label>Message</label></div>
+      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)" action="https://formsubmit.co/ajax/varun2011saxena@gmail.com" method="POST">
+        <input type="hidden" name="_cc" value="varunsaxena590@gmail.com,varunsaxena063@gmail.com" />
+        <input type="hidden" name="_subject" value="New message from Varun Portfolio" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="fg"><input type="text" name="name" placeholder="Your Name" required /><label>Name</label></div>
+        <div class="fg"><input type="email" name="email" placeholder="Your Email" required /><label>Email</label></div>
+        <div class="fg"><input type="text" name="subject" placeholder="Subject" /><label>Subject</label></div>
+        <div class="fg"><textarea name="message" rows="5" placeholder="Your Message" required></textarea><label>Message</label></div>
         <button type="submit" class="btn-primary" style="width:100%">Send Message 🚀</button>
       </form>
     </div>
